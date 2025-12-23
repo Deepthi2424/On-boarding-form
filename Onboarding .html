@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI R US Internship Onboarding Form</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    background: #ffffff;
+    margin: auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Star for required labels */
+.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+/* Star for required sections */
+.section-required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    min-height: 70px;
+}
+
+/* ===== FIXED INTERNSHIP DOMAIN CHECKBOX LAYOUT ===== */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1px;   /*  reduced column gap */
+    row-gap: 5px;      /* vertical spacing */
+}
+
+.checkbox-group label {
+    width: calc(10% - 5px);
+    display: flex;
+    align-items: flex-start;             /* space between checkbox & text */
+    font-weight: normal;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background: #f0f0f0;
+}
+
+.signature {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.signature div {
+    width: 45%;
+}
+
+.submit-btn {
+    text-align: center;
+    margin-top: 30px;
+}
+/* ===== INTERNSHIP TYPE – CORRECT RADIO ALIGNMENT ===== */
+.radio-group {
+    display: flex;
+    gap: 20px;              /* proper spacing between options */
+    align-items: center;
+}
+
+.radio-group label {
+    display: inline-flex;   /* prevents overlap */
+    align-items: center;
+    gap: 4px;               /* space between radio & text */
+    font-weight: normal;
+}
+
+.radio-group input[type="radio"] {
+    margin: 0;
+    flex-shrink: 0;         /* prevents radio from collapsing */
+}
+
+button {
+    padding: 10px 30px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.container {
+    position: relative;
+}
+.form-logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 180px;   /* BIGGER LENGTH */
+    height: auto;  /* keeps aspect ratio */
+}
+
+.radio-inline {
+    display: flex;
+    align-items: center;
+    gap: 30px;        /* space between options */
+    flex-wrap: nowrap; /* prevents going to next line */
+}
+
+.radio-inline label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap; /* keeps text in one line */
+    font-weight: normal;
+}
+
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LOGO INSIDE FORM -->
+    <img src="logo.png" alt="AI R US Logo" class="form-logo">
+
+    <h1>AI R US</h1>
+    <h2>Internship On-Boarding Form</h2>
+
+
+<p style="color:red; text-align:center;">
+    * Indicates mandatory fields. All sections are compulsory.
+</p>
+
+<!-- 1. PERSONAL DETAILS -->
+<h2 class="section-required">1. Personal Details</h2>
+
+<label class="required">Full Name (As per Aadhaar)</label>
+<input type="text" required>
+
+<label class="required">Date of Birth</label>
+<input type="date" required>
+
+<label class="required">Gender</label>
+<select required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Other</option>
+</select>
+
+<label class="required">Contact Number</label>
+<input type="text"
+       id="contact"
+       maxlength="10"
+       pattern="[0-9]{10}"
+       title="Please enter exactly 10 digits"
+       required
+       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+
+<label class="required">Email Address</label>
+<input type="email" id="email" required>
+<small id="emailError" style="color:red; display:none;">
+    Please enter a valid email address containing @ (example: name@gmail.com)
+</small>
+
+
+
+<label class="required">Aadhaar Number</label>
+<input type="text"
+       name="aadhaar"
+       maxlength="12"
+       inputmode="numeric"
+       pattern="^[0-9]{12}$"
+       title="Aadhaar number must be exactly 12 digits"
+       required
+       oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 12)">
+
+<h3>Residential Address</h3>
+
+<label class="required">House Name / House No</label>
+<input type="text" name="house_name" required>
+
+<label class="required">Area / Street</label>
+<input type="text" name="street" required>
+
+<label class="required">City</label>
+<input type="text" name="city" required>
+
+<label class="required">District</label>
+<input type="text" name="district" required>
+
+<label class="required">State</label>
+<input type="text" name="state" required>
+
+<label class="required">Pincode</label>
+<input type="text"
+       name="pincode"
+       maxlength="6"
+       pattern="[0-9]{6}"
+       title="Enter a valid 6-digit pincode"
+       required>
+
+
+<!-- 2. INTERNSHIP DETAILS -->
+<h2 class="section-required">2. Internship Details</h2>
+
+<label class="required">Internship Domain</label>
+<div class="checkbox-group">
+    <label><input type="checkbox"> Artificial Intelligence</label>
+    <label><input type="checkbox"> Cloud Computing</label>
+    <label><input type="checkbox"> Java Full Stack Development</label>
+    <label><input type="checkbox"> Python Full Stack Development</label>
+    <label><input type="checkbox"> Web Development</label>
+    <label><input type="checkbox"> MERN Full Stack Development</label>
+    <label><input type="checkbox"> Data Analytics</label>
+    <label><input type="checkbox"> Data Science</label>
+
+</div>
+
+<label class="required">Internship Type</label>
+<div class="radio-group">
+    <label><input type="radio" name="type"> Online</label></br>
+    <label><input type="radio" name="type"> Offline</label></br>
+    <label><input type="radio" name="type"> Hybrid</label></br>
+</div>
+
+<label class="required">Internship Duration</label>
+<input type="date" required> to <input type="date" required>
+
+<label class="required">Daily Availability (Hours)</label>
+<input type="text" required>
+
+<label class="required">Preferred Working Days</label>
+<div class="checkbox-group">
+    <label><input type="checkbox"> Weekdays</label>
+    <label><input type="checkbox"> Weekends</label>
+    <label><input type="checkbox"> Both</label>
+</div>
+
+<!-- 3. EDUCATION -->
+<h2 class="section-required">3. Educational Details</h2>
+
+<<table>
+    <tr>
+        <th>Level</th>
+        <th>Degree / Course & Branch</th>
+        <th>Institution</th>
+        <th>Board / University</th>
+        <th>Year of Passing</th>
+        <th>Percentage / CGPA</th>
+    </tr>
+
+    <tr>
+        <td>SSLC</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+
+    <tr>
+        <td>PUC</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+
+    <tr>
+        <td>UG</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+
+    <tr>
+        <td>PG</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+</table>
+
+i-<label class="required">Current Status</label>
+<div class="radio-inline">
+    <label><input type="radio" name="status"> Student</label>
+    <label><input type="radio" name="status"> Passed Out</label>
+    <label><input type="radio" name="status"> Final Year Student</label>
+</div>
+
+
+<!-- 4. SKILLS -->
+<h2 class="section-required">4. Skills & Technical Background</h2>
+
+<label class="required">Programming Languages Known</label>
+<div class="checkbox-group">
+    <label><input type="checkbox"> Python</label>
+    <label><input type="checkbox"> Java</label>
+    <label><input type="checkbox"> C</label>
+    <label><input type="checkbox"> C++</label>
+    <label><input type="checkbox"> JavaScript</label>
+    <label><input type="checkbox"> Others</label>
+</div>
+
+<label class="required">Tools / Technologies</label>
+<div class="checkbox-group">
+    <label><input type="checkbox"> HTML</label>
+    <label><input type="checkbox"> CSS</label>
+    <label><input type="checkbox"> React</label>
+    <label><input type="checkbox"> Node.js</label>
+    <label><input type="checkbox"> SQL</label>
+    <label><input type="checkbox"> MongoDB</label>
+    <label><input type="checkbox"> Git</label>
+    <label><input type="checkbox"> AWS</label>
+    <label><input type="checkbox"> Others</label>
+</div>
+
+<label class="required">Prior Internship / Project Experience</label>
+<div class="radio-group">
+    <label><input type="radio" name="exp"> Yes</label>
+    <label><input type="radio" name="exp"> No</label>
+</div>
+
+<label class="required">If Yes, Brief Details</label>
+<textarea required></textarea>
+
+<!-- DOCUMENT SUBMISSION -->
+<div class="section">
+    <h2>5. Document Submission</h2>
+    <p style="color:red; font-weight:600;">
+    <span style="color:red;">*</span>
+    All the documents file name should be submitted with first name, last name & document name with pdf format only.</br>
+    (Ex: John_S_Aadhaar)
+</p>
+
+
+    <label>Aadhaar Card (Max 2MB)</label>
+    <input type="file"
+           name="aadhaarFile"
+           accept=".pdf,.jpg,.jpeg,.png"
+           title="Upload file named like: Emily_Aadhaar"
+           required>
+
+    <label>PAN Card (Max 2MB)</label>
+    <input type="file"
+           name="panFile"
+           accept=".pdf,.jpg,.jpeg,.png"
+           title="Upload file named like: Emily_PAN"
+           required>
+
+    <label>College ID Card (Max 1MB)</label>
+    <input type="file"
+           name="collegeFile"
+           accept=".jpg,.jpeg,.png"
+           title="Upload file named like: Emily_CollegeID"
+           required>
+
+    <label>Resume – Updated (Max 2MB)</label>
+    <input type="file"
+           name="resumeFile"
+           accept=".pdf"
+           title="Upload file named like: Emily_Resume"
+           required>
+
+    <label>SSLC Marks Card (Max 2MB)</label>
+    <input type="file"
+           name="sslcFile"
+           accept=".pdf,.jpg,.jpeg,.png"
+           title="Upload file named like: Emily_SSLC"
+           required>
+
+    <label>PUC Marks Card (Max 2MB)</label>
+    <input type="file"
+           name="pucFile"
+           accept=".pdf,.jpg,.jpeg,.png"
+           title="Upload file named like: Emily_PUC"
+           required>
+
+    <label>Marks Cards of All Semesters (Max 5MB)</label>
+    <input type="file"
+           name="semesterFile"
+           accept=".pdf"
+           title="Upload file named like: Emily_AllSemesters"
+           required>
+
+    <label>Passport Size Photograph (Max 500KB)</label>
+    <input type="file"
+           name="photoFile"
+           accept=".jpg,.jpeg,.png"
+           title="Upload file named like: Emily_PassportPhoto"
+           required>
+
+    <p style="font-size:13px; color:#555; margin-top:10px;">
+    </p>
+</div>
+
+
+<!-- 6. EMERGENCY -->
+<h2 class="section-required">6. Emergency Contact Details</h2>
+
+<label class="required">Name</label>
+<input type="text" required>
+
+<label class="required">Relationship</label>
+<input type="text" required>
+
+<label class="required">Emergency Contact Number</label>
+<input type="text"
+       maxlength="10"
+       pattern="[0-9]{10}"
+       required
+       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+<!-- 7. Code of Conduct & Intern Responsibilities-->
+<h2 class="section-required">7. Code of Conduct & Intern Responsibilities</h2>
+<p>The Intern agrees to:</br>
+•	Maintain discipline and professionalism.</br>
+•	Follow company policies and mentor instructions.</br>
+•	Not disclose confidential company data.</br>
+•	Complete assigned tasks within timelines.</br>
+•	Maintain minimum attendance requirements</br>
+</p>
+
+<!-- 8. DECLARATION -->
+<h2 class="section-required">8. Declaration by Intern</h2>
+<p>
+I hereby declare that all information provided is <strong>true and correct</strong>to the best of my knowledge.</br>
+I understand that providing false information may lead to <strong>termination of internship.</strong></br>
+I agree to abide by all rules, policies, and guidelines of <strong>AI R US </strong>during my internship period.</br>
+</p>
+
+<div class="signature">
+<div>
+<label class="required">Place</label>
+<input type="text" required>
+</div>
+<div>
+<label class="required">Date</label>
+<input type="date" required>
+</div>
+</div>
+
+<label class="required">Signature of Intern</label>
+<input type="text" required>
+
+
+
+
+<div class="submit-btn">
+<button type="submit">Submit Form</button>
+</div>
+
+<div class="footer">
+AI R US<br>
+Shivamogga – 577201<br>
+📞 7676749499 | ✉ ask@airus.uk
+</div>
+
+</div>
+<script>
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("emailError");
+
+emailInput.addEventListener("input", function () {
+    const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+    if (!emailPattern.test(emailInput.value)) {
+        emailError.style.display = "block";
+    } else {
+        emailError.style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>
+
