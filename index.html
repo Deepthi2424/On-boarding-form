@@ -179,11 +179,8 @@ button {
 </head>
 
 <body>
-<form 
-  action="PASTE_POWER_AUTOMATE_URL_HERE"
-  method="POST"
-  enctype="multipart/form-data"
->
+<form id="onboardingForm" novalidate>
+
 <div class="container">
 
     <!-- LOGO INSIDE FORM -->
@@ -218,7 +215,7 @@ button {
 <input type="text" name="contact" maxlength="10" pattern="[0-9]{10}" required>
 
 <label class="required">Email Address</label>
-<input type="email" id="email" required>
+<input type="email" name="email" id="email" required>
 <small id="emailError" style="color:red; display:none;">
     Please enter a valid email address containing @ (example: name@gmail.com)
 </small>
@@ -278,9 +275,9 @@ button {
 </div>
 
 <label class="required">Internship Type</label>
-<div class="radio-group">
-    <label><input type="radio" name="type"> Online</label></br>
-    <label><input type="radio" name="type"> Offline</label></br>
+<div class="radio-group"> 
+    <label><input type="radio" name="type"> Online</label></br> 
+    <label><input type="radio" name="type"> Offline</label></br> 
     <label><input type="radio" name="type"> Hybrid</label></br>
 </div>
 
@@ -314,38 +311,20 @@ button {
 
     <tr>
         <td>SSLC</td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
+       <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
     </tr>
 
     <tr>
         <td>PUC</td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-    </tr>
-
+      <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
     <tr>
         <td>UG</td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
+       <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
     </tr>
 
     <tr>
         <td>PG</td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
+        <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
     </tr>
 </table>
 
@@ -362,12 +341,12 @@ i-<label class="required">Current Status</label>
 
 <label class="required">Programming Languages Known</label>
 <div class="checkbox-group">
-    <label><input type="checkbox"> Python</label>
-    <label><input type="checkbox"> Java</label>
-    <label><input type="checkbox"> C</label>
-    <label><input type="checkbox"> C++</label>
-    <label><input type="checkbox"> JavaScript</label>
-    <label><input type="checkbox"> Others</label>
+    <label><input type="checkbox"name="skills[]" value="Python"> Python</label>
+    <label><input type="checkbox"name="skills[]" value="Java"> Java</label>
+    <label><input type="checkbox"name="skills[]" value="C"> C</label>
+    <label><input type="checkbox"name="skills[]" value="C++"> C++</label>
+    <label><input type="checkbox"name="skills[]" value="JavaScript"> JavaScript</label>
+    <label><input type="checkbox"name="skills[]" value="Others"> Others</label>
 </div>
 
 <label class="required">Tools / Technologies</label>
@@ -390,7 +369,7 @@ i-<label class="required">Current Status</label>
 </div>
 
 <label class="required">If Yes, Brief Details</label>
-<textarea required></textarea>
+<textarea name="experienceDetails" required></textarea>
 
 <!-- DOCUMENT SUBMISSION -->
 <div class="section">
@@ -467,7 +446,7 @@ i-<label class="required">Current Status</label>
 <h2 class="section-required">6. Emergency Contact Details</h2>
 
 <label class="required">Name</label>
-<input type="text" required>
+<input type="text" name="emergencyName" required>
 
 <label class="required">Relationship</label>
 <input type="text" required>
@@ -511,12 +490,12 @@ I agree to abide by all rules, policies, and guidelines of <strong>AI R US </str
 <label class="required">Signature of Intern</label>
 <input type="text" required>
 
-
-
-
-<div class="submit-btn">
-<button type="submit">Submit Form</button>
+  <!-- inputs -->
+   <div class="submit-btn">
+  <button type="submit">Submit</button>
 </div>
+</form>
+
 
 <div class="footer">
 AI R US<br>
@@ -524,11 +503,7 @@ Shivamogga – 577201<br>
 📞 7676749499 | ✉ ask@airus.uk
 </div>
 
-</div>
 <script>
-const emailInput = document.getElementById("email");
-const emailError = document.getElementById("emailError");
-
 emailInput.addEventListener("input", function () {
     const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
@@ -539,7 +514,49 @@ emailInput.addEventListener("input", function () {
     }
 });
 </script>
-</form>
+
+<script>
+document.getElementById("onboardingForm").addEventListener("submit", function (e) {
+  e.preventDefault(); // STOP page reload
+
+  // Validate form
+  if (!this.checkValidity()) {
+    alert("Please fill all required fields correctly.");
+    this.reportValidity();
+    return;
+  }
+
+  // Convert form data to JSON
+  const data = {};
+  new FormData(this).forEach((value, key) => {
+    if (data[key]) {
+      if (!Array.isArray(data[key])) {
+        data[key] = [data[key]];
+      }
+      data[key].push(value);
+    } else {
+      data[key] = value;
+    }
+  });
+
+  fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/1d1d1e82894e4f86becb071a60fc521a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9uVmtmvssd1NVLWtsVJKZKHzqVmxKrAYWctuUiDi02o", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Failed");
+    alert("Form submitted successfully!");
+    this.reset();
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Submission failed. Check console.");
+  });
+});
+</script>
+
 </body>
 </html>
-
