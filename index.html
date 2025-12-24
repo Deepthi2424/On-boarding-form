@@ -519,8 +519,9 @@ emailInput.addEventListener("input", function () {
 <script>
 ddocument.getElementById("internForm").addEventListener("submit", function (e) {
     e.preventDefault();   // 🔴 THIS STOPS PAGE REFRESH
-    
-    // send data to Power Automate here
+     const name = document.getElementById("name").value;
+  const internship = document.getElementById("internship").value;
+  const fileInput = document.getElementById("aadhar"); // send data to Power Automate here
 });
 
 
