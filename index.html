@@ -519,7 +519,7 @@ emailInput.addEventListener("input", function () {
 </script>
 
 <script>
-ddocument.getElementById("internForm").addEventListener("submit", function (e) {
+document.getElementById("internForm").addEventListener("submit", function (e) {
     e.preventDefault();   // 🔴 THIS STOPS PAGE REFRESH
      const name = document.getElementById("name").value;
   const internship = document.getElementById("internship").value;
@@ -582,7 +582,6 @@ reader.onload = function () {
     })
     .then(res => {
         if (!res.ok) throw new Error("Failed");
-        return res.text();
     })
     .then(msg => {
         alert("Form submitted successfully!");
