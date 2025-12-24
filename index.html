@@ -179,7 +179,11 @@ button {
 </head>
 
 <body>
-
+<form 
+  action="PASTE_POWER_AUTOMATE_URL_HERE"
+  method="POST"
+  enctype="multipart/form-data"
+>
 <div class="container">
 
     <!-- LOGO INSIDE FORM -->
@@ -197,13 +201,13 @@ button {
 <h2 class="section-required">1. Personal Details</h2>
 
 <label class="required">Full Name (As per Aadhaar)</label>
-<input type="text" required>
+<input type="text" name="fullName" required>
 
 <label class="required">Date of Birth</label>
-<input type="date" required>
+<input type="date"  name="dob" required>
 
 <label class="required">Gender</label>
-<select required>
+<select name="gender" required>
     <option value="">Select</option>
     <option>Male</option>
     <option>Female</option>
@@ -211,14 +215,7 @@ button {
 </select>
 
 <label class="required">Contact Number</label>
-<input type="text"
-       id="contact"
-       maxlength="10"
-       pattern="[0-9]{10}"
-       title="Please enter exactly 10 digits"
-       required
-       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-
+<input type="text" name="contact" maxlength="10" pattern="[0-9]{10}" required>
 
 <label class="required">Email Address</label>
 <input type="email" id="email" required>
@@ -269,14 +266,14 @@ button {
 
 <label class="required">Internship Domain</label>
 <div class="checkbox-group">
-    <label><input type="checkbox"> Artificial Intelligence</label>
-    <label><input type="checkbox"> Cloud Computing</label>
-    <label><input type="checkbox"> Java Full Stack Development</label>
-    <label><input type="checkbox"> Python Full Stack Development</label>
-    <label><input type="checkbox"> Web Development</label>
-    <label><input type="checkbox"> MERN Full Stack Development</label>
-    <label><input type="checkbox"> Data Analytics</label>
-    <label><input type="checkbox"> Data Science</label>
+    <label><input type="checkbox" name="domain[]" value="AI"> Artificial Intelligence</label>
+    <label><input type="checkbox" name="domain[]" value="Cloud"> Cloud Computing</label>
+    <label><input type="checkbox" name="domain[]" value="Java"> Java Full Stack Development</label>
+    <label><input type="checkbox" name="domain[]" value="Python"> Python Full Stack Development</label>
+    <label><input type="checkbox" name="domain[]" value="Web"> Web Development</label>
+    <label><input type="checkbox" name="domain[]" value="MERN"> MERN Full Stack Development</label>
+    <label><input type="checkbox" name="domain[]" value="Data Analytics"> Data Analytics</label>
+    <label><input type="checkbox" name="domain[]" value="Data Sciene"> Data Science</label>
 
 </div>
 
@@ -288,7 +285,9 @@ button {
 </div>
 
 <label class="required">Internship Duration</label>
-<input type="date" required> to <input type="date" required>
+<input type="date" name="startDate" required>
+<input type="date" name="endDate" required>
+
 
 <label class="required">Daily Availability (Hours)</label>
 <input type="text" required>
@@ -303,7 +302,7 @@ button {
 <!-- 3. EDUCATION -->
 <h2 class="section-required">3. Educational Details</h2>
 
-<<table>
+<table>
     <tr>
         <th>Level</th>
         <th>Degree / Course & Branch</th>
@@ -406,21 +405,21 @@ i-<label class="required">Current Status</label>
     <label>Aadhaar Card (Max 2MB)</label>
     <input type="file"
            name="aadhaarFile"
-           accept=".pdf,.jpg,.jpeg,.png"
+           accept=".pdf"
            title="Upload file named like: Emily_Aadhaar"
            required>
 
     <label>PAN Card (Max 2MB)</label>
     <input type="file"
            name="panFile"
-           accept=".pdf,.jpg,.jpeg,.png"
+           accept=".pdf"
            title="Upload file named like: Emily_PAN"
            required>
 
     <label>College ID Card (Max 1MB)</label>
     <input type="file"
            name="collegeFile"
-           accept=".jpg,.jpeg,.png"
+           accept=".pdf"
            title="Upload file named like: Emily_CollegeID"
            required>
 
@@ -434,14 +433,14 @@ i-<label class="required">Current Status</label>
     <label>SSLC Marks Card (Max 2MB)</label>
     <input type="file"
            name="sslcFile"
-           accept=".pdf,.jpg,.jpeg,.png"
+           accept=".pdf"
            title="Upload file named like: Emily_SSLC"
            required>
 
     <label>PUC Marks Card (Max 2MB)</label>
     <input type="file"
            name="pucFile"
-           accept=".pdf,.jpg,.jpeg,.png"
+           accept=".pdf"
            title="Upload file named like: Emily_PUC"
            required>
 
@@ -455,7 +454,7 @@ i-<label class="required">Current Status</label>
     <label>Passport Size Photograph (Max 500KB)</label>
     <input type="file"
            name="photoFile"
-           accept=".jpg,.jpeg,.png"
+           accept=".pdf"
            title="Upload file named like: Emily_PassportPhoto"
            required>
 
@@ -540,7 +539,7 @@ emailInput.addEventListener("input", function () {
     }
 });
 </script>
-
+</form>
 </body>
 </html>
 
