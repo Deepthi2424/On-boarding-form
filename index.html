@@ -179,7 +179,7 @@ button {
 </head>
 
 <body>
-<form id="internForm">
+<form id="myForm" action="javascript:void(0);">
 
 
 <div class="container">
@@ -580,6 +580,9 @@ reader.onload = function () {
     })
     .then(res => {
         if (!res.ok) throw new Error("Failed");
+        return res.text();
+    })
+    .then(msg => {
         alert("Form submitted successfully!");
     })
     .catch(err => {
