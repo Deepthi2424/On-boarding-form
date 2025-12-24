@@ -179,7 +179,8 @@ button {
 </head>
 
 <body>
-<form id="onboardingForm" novalidate>
+<form id="internForm">
+
 
 <div class="container">
 
@@ -516,8 +517,12 @@ emailInput.addEventListener("input", function () {
 </script>
 
 <script>
-document.getElementById("onboardingForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // STOP page reload
+ddocument.getElementById("internForm").addEventListener("submit", function (e) {
+    e.preventDefault();   // 🔴 THIS STOPS PAGE REFRESH
+    
+    // send data to Power Automate here
+});
+
 
   // Validate form
   if (!this.checkValidity()) {
@@ -544,8 +549,33 @@ document.getElementById("onboardingForm").addEventListener("submit", function (e
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+    Name: name,
+    Internship: internship,
+    Email: email
   })
+});
+const file = document.getElementById("aadhar").files[0];
+const reader = new FileReader();
+
+reader.onload = function () {
+    const base64File = reader.result.split(",")[1];
+
+    fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/1d1d1e82894e4f86becb071a60fc521a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9uVmtmvssd1NVLWtsVJKZKHzqVmxKrAYWctuUiDi02o", {
+     method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            Name: name,
+            Internship: internship,
+            AadharFileName: file.name,
+            AadharFileContent: base64File
+        })
+    });
+};
+
+reader.readAsDataURL(file);
+
+
   .then(res => {
     if (!res.ok) throw new Error("Failed");
     alert("Form submitted successfully!");
@@ -555,7 +585,6 @@ document.getElementById("onboardingForm").addEventListener("submit", function (e
     console.error(err);
     alert("Submission failed. Check console.");
   });
-});
 </script>
 
 </body>
