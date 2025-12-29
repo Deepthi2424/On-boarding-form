@@ -516,7 +516,6 @@ emailInput.addEventListener("input", function () {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("enrollForm").addEventListener("submit", function(e) {
         e.preventDefault();
 
@@ -528,18 +527,22 @@ document.addEventListener("DOMContentLoaded", function() {
             dailyAvailability: document.getElementById("dailyAvailability").value
         };
 
-        fetch("YOUR_POWER_AUTOMATE_HTTP_TRIGGER_URL", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        })
-        .then(res => {
-            if(res.ok) alert("Form submitted successfully!");
-            else alert("Error submitting form: " + res.status);
-        })
-        .catch(err => console.error(err));
-    });
-});
+       fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bb7014680c2e446b806cf7c038ac9970/triggers/manual/paths/invoke?api-version=1", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        name: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        availability: document.getElementById("dailyAvailability").value
+    })
+})
+.then(res => {
+    if(res.ok) alert("Form submitted successfully!");
+    else alert("Submission failed");
+})
+.catch(err => alert("Network error"));
+
 </script>
 
 </body>
