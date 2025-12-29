@@ -506,16 +506,15 @@ Shivamogga – 577201<br>
 </div>
 
 <script>
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("emailError");
+
 emailInput.addEventListener("input", function () {
     const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-
-    if (!emailPattern.test(emailInput.value)) {
-        emailError.style.display = "block";
-    } else {
-        emailError.style.display = "none";
-    }
+    emailError.style.display = emailPattern.test(emailInput.value) ? "none" : "block";
 });
 </script>
+
 
 <script>
 document.getElementById("enrollForm").addEventListener("submit", function(e) {
@@ -523,10 +522,11 @@ document.getElementById("enrollForm").addEventListener("submit", function(e) {
     
 // Collect old parameters for Power Automate
     const data = {
-        name: document.getElementById("fullName").value,
-        email: document.getElementById("email").value,
-        course: document.getElementById("dailyAvailability").value, // Example mapping, change if needed
-        phone: document.getElementById("phone").value
+    <input type="text" name="fullName" id="fullName" required>
+<input type="email" name="email" id="email" required>
+<input type="text" name="contact" id="phone" required>
+<input type="text" id="dailyAvailability" required>
+
     };
 
     fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bb7014680c2e446b806cf7c038ac9970/triggers/manual/paths/invoke?api-version=1", {
@@ -535,10 +535,12 @@ document.getElementById("enrollForm").addEventListener("submit", function(e) {
         body: JSON.stringify(data)
     })
     .then(res => {
+        console.log("Status:", res.status);
         if(res.ok) alert("Form submitted successfully!");
         else alert("Error submitting form: " + res.status);
     })
     .catch(err => console.error(err));
+       alert("Network / CORS error");
 });
 </script>
 </body>
