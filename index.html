@@ -522,12 +522,11 @@ document.getElementById("enrollForm").addEventListener("submit", function(e) {
     
 // Collect old parameters for Power Automate
     const data = {
-    <input type="text" name="fullName" id="fullName" required>
-<input type="email" name="email" id="email" required>
-<input type="text" name="contact" id="phone" required>
-<input type="text" id="dailyAvailability" required>
-
-    };
+    fullName: document.getElementById("fullName").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    dailyAvailability: document.getElementById("dailyAvailability").value
+};
 
     fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bb7014680c2e446b806cf7c038ac9970/triggers/manual/paths/invoke?api-version=1", {
         method:"POST",
