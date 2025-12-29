@@ -546,7 +546,7 @@ document.getElementById("internForm").addEventListener("submit", function (e) {
     }
   });
 
-  fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bb7014680c2e446b806cf7c038ac9970/triggers/manual/paths/invoke?api-version=1",{
+  fetch("https://make.powerautomate.com/environments/Default-f4c303f8-6ce4-4f29-88fc-b5dbf3a87efc/flows/b907100f-3688-457b-9196-1fbf8ee29292?v3=true",{
     method: "POST",
     enctype="multipart/form-data"
     headers: {
@@ -567,7 +567,7 @@ const internship = document.getElementById("internship").value;
 reader.onload = function () {
     const base64File = reader.result.split(",")[1];
 
-    fetch("https://defaultf4c303f86ce44f2988fcb5dbf3a87e.fc.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bb7014680c2e446b806cf7c038ac9970/triggers/manual/paths/invoke?api-version=1", {
+    fetch("https://make.powerautomate.com/environments/Default-f4c303f8-6ce4-4f29-88fc-b5dbf3a87efc/flows/b907100f-3688-457b-9196-1fbf8ee29292?v3=true", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
